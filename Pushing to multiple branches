@@ -1,0 +1,1 @@
+In IntelliJ, when you push make sure you are pushing to release:release for the release branch or develop:develop for the develop branch
