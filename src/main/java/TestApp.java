@@ -6,5 +6,6 @@ public class TestApp {
         System.out.println("Adding new print for develop branch");
         System.out.println("Testing commits...");
         System.out.println("Testing commits...");
+        System.out.println("Testing commits...");
     }
 }
