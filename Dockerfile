@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/classes/ /tmp/classes
-WORKDIR /tmp/classes
-ENTRYPOINT ["java", "TestApp"]
+COPY ./target/Assessment-1.0-SNAPSHOT-jar-with-dependencies.jar /tmp
+WORKDIR /tmp
+ENTRYPOINT ["java", "-jar", "Assessment-1.0-SNAPSHOT-jar-with-dependencies.jar"]
