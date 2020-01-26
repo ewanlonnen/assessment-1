@@ -7,7 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Assessment" />
+        <module name="SEM CW" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="assessment-1" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
