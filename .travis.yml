@@ -6,5 +6,8 @@ services:
   - docker
 
 after_success:
+  - docker network create --driver bridge assessment1
+  - docker pull mongo
+  - docker run -d --name mongo-dbserver --network assessment-1 mongo
   - docker build -t assessment-1 .
   - docker run assessment1
