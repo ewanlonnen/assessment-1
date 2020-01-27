@@ -8,10 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Assessment" />
         <module name="SEM CW" />
+        <module name="assessment-1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="assessment-1" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
