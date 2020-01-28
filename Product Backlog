@@ -3,16 +3,16 @@ Roadmap
 By 27th Jan 2020
 
 Priority 1:
-	• Project builds to self-contained JAR with Maven.
-	• Dockerfile for project set-up and works.
-	• Travis CI for project set-up and build is working using JAR, and Docker on Travis CI. 
-	• Correct branches for GitFlow workflow created - includes master, develop, and release branches. 
+	• Project builds to self-contained JAR with Maven. Done
+	• Dockerfile for project set-up and works. Done
+	• Travis CI for project set-up and build is working using JAR, and Docker on Travis CI. Done
+	• Correct branches for GitFlow workflow created - includes master, develop, and release branches. Done
 
 Priority 2:
-	• GitHub project for coursework set-up.
-	• Product Backlog created.
-	• First release created on GitHub.
-	• Code of Conduct defined.
+	• GitHub project for coursework set-up. Done
+	• Product Backlog created. Done
+	• First release created on GitHub. Done
+	• Code of Conduct defined. Done
 
 By 17th February 2020
  
