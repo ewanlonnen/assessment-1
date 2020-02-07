@@ -70,13 +70,12 @@ public class TestApp
     public static void main(String[] args)
     {
         // Create new Application
-        TestApp db = new TestApp();
+        TestApp a = new TestApp();
 
         // Connect to database
-        db.connect();
+        a.connect();
 
         // Disconnect from database
-        db.disconnect();
+        a.disconnect();
     }
-
 }
