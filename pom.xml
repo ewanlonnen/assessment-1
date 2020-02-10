@@ -28,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>TestApp</mainClass>
+                            <mainClass>org.example.TestApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
