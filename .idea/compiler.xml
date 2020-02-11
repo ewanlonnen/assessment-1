@@ -11,8 +11,5 @@
         <module name="assessment-1" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="assessment-1" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
