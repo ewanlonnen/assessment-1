@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a developer I must provide a way to display a non-set list of n countries in a region/country/world so that the user can choose the value of n.
+As a developer I must provide a way to display a non-set list of n countries in a region/continent/world so that the user can choose the value of n.
 
 ### Scope
 
@@ -20,11 +20,11 @@ Database contains appropriate country information
 
 ### Success End Condition
 
-List of countries is displayed for user
+List of countries is displayed for the user
 
 ### Failed End Condition
 
-Information is not displayed
+Information is not displayed or incorrect information is displayed
 
 ### Primary Actor
 
