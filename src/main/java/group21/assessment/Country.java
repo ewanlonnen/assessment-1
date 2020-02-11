@@ -1,4 +1,4 @@
-package org.example;
+package group21.assessment;
 
 public class Country {
 
