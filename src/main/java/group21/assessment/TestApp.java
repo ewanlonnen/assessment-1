@@ -1,4 +1,4 @@
-package org.example;
+package group21.assessment;
 import java.sql.*;
 
 public class TestApp
