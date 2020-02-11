@@ -16,3 +16,8 @@ WEEK 3:
 WEEK 4:
 •	Integrated our github project with Zube.IO and used this to help us visualise what must be done and allowed team members to assign themselves to a task to increase efficiency and let us keep track of who is doing what.
 •	Set up our kanban/sprint board
+WEEK 5:
+•	Discussed user issues and reworked them slightly and added the rest to github
+•	Merged branches to master to get closer towards a product for Code Presentation 2
+•	Began progress towards user case in first meeting
+
