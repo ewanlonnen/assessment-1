@@ -39,6 +39,7 @@ A request for a list of countries is received
 1. User supplies the area from which they would like countries to be displayed
 2. Countries from the specified area are extracted from the database
 3. Countries are sorted into descending order of population
+4. Countries are displayed to the user as a list
 
 ## EXTENSIONS
 
