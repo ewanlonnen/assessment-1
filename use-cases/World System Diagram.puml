@@ -14,4 +14,16 @@ rectangle "World System"{
     UC1 - Database
 
 }
+
+rectangle "Use case 2"{
+
+    usecase UC2 as "Display a non-set list of countries"
+
+    usecase UCb as "Display list"
+
+    dev - UC2
+    UC2 ..> UCb : include
+    UC2 - Database
+
+}
 @enduml
