@@ -1,0 +1,17 @@
+@startuml
+actor dev as "Developer"
+
+rectangle Database
+
+rectangle "World System"{
+
+    usecase UC1 as "Facilitate the creation of a city report"
+
+    usecase UCa as "Generate city report"
+
+    dev - UC1
+    UC1 ..> UCa : include
+    UC1 - Database
+
+}
+@enduml
