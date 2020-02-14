@@ -60,7 +60,7 @@ public class TestApp {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT Name, Continent, Population FROM country WHERE Name = " + "'" + cName + "'";
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM country, city WHERE country.Capital = city.ID and country.Name = " + "'" + cName + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -68,9 +68,13 @@ public class TestApp {
             //ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
                 Country c = new Country();
-                c.name = rset.getString("Name");
-                c.Continent = rset.getString("Continent");
-                c.Population = rset.getInt("Population");
+                c.code = rset.getString("country.Code");
+                c.name = rset.getString("country.Name");
+                c.continent = rset.getString("country.Continent");
+                c.region = rset.getString("country.Region");
+                c.population = rset.getInt("country.Population");
+                c.capital = rset.getString("city.Name");
+
                 return c;
             }
             return null;
@@ -87,7 +91,7 @@ public class TestApp {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT Name, Continent, Population FROM country ORDER BY Population DESC";
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM country, city WHERE country.Capital = city.ID ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -95,9 +99,12 @@ public class TestApp {
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
                 Country c = new Country();
-                c.name = rset.getString("Name");
-                c.Continent = rset.getString("Continent");
-                c.Population = rset.getInt("Population");
+                c.code = rset.getString("country.Code");
+                c.name = rset.getString("country.Name");
+                c.continent = rset.getString("country.Continent");
+                c.region = rset.getString("country.Region");
+                c.population = rset.getInt("country.Population");
+                c.capital = rset.getString("city.Name");
                 countryList.add(c);
             }
             return countryList;
@@ -114,7 +121,7 @@ public class TestApp {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT Name, Continent, Population FROM country WHERE Continent = " + "'" + s_continent + "'" + " ORDER BY Population DESC";
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name  FROM country, city WHERE country.Capital = city.ID and country.Continent = " + "'" + s_continent + "'" + " ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
@@ -122,9 +129,12 @@ public class TestApp {
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
                 Country c = new Country();
-                c.name = rset.getString("Name");
-                c.Continent = rset.getString("Continent");
-                c.Population = rset.getInt("Population");
+                c.code = rset.getString("country.Code");
+                c.name = rset.getString("country.Name");
+                c.continent = rset.getString("country.Continent");
+                c.region = rset.getString("country.Region");
+                c.population = rset.getInt("country.Population");
+                c.capital = rset.getString("city.Name");
                 countryList.add(c);
             }
             return countryList;
@@ -138,9 +148,12 @@ public class TestApp {
     public void displayCountry(Country c) {
         if (c != null) {
             System.out.println(
-                    c.name + " "
-                            + c.Continent + " "
-                            + c.Population + "\n");
+                   c.code + " "
+                            + c.name + " "
+                            + c.continent + " "
+                            + c.region + " "
+                            + c.population + " "
+                            + c.capital +"\n");
         }
     }
 
@@ -154,14 +167,14 @@ public class TestApp {
         ArrayList<Country> c = a.getCountryByPopulation();
         for (Country country : c) {
             String country_string =
-                    String.format("%-10s %-15s %-20s", country.name, country.Continent, country.Population);
+                    String.format("%-5s %-30s %-20s %-20s %-15s %-15s", country.code, country.name, country.continent, country.region, country.population, country.capital);
             System.out.println(country_string);
         }
 
         ArrayList<Country> c1 = a.getCountryInContinent("Europe");
         for (Country country : c1) {
             String country_string =
-                    String.format("%-10s %-15s %-20s", country.name, country.Continent, country.Population);
+                    String.format("%-5s %-30s %-20s %-20s %-15s %-15s", country.code, country.name, country.continent, country.region, country.population, country.capital);
             System.out.println(country_string);
         }
         Country individualCountry = a.getCountry("Syria");
