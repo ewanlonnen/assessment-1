@@ -1,4 +1,4 @@
-# USE CASE 1: Display a non-set list of n countries
+# USE CASE 2: Display a non-set list of n countries
 
 ## CHARACTERISTIC INFORMATION
 
