@@ -44,7 +44,7 @@ A request for a list of length N of cities in a specified area is received
 
 1. **Area the user has requested does not exist in the database**:
     1.1. Inform user that the area is invalid
-2. **Value the user has entered is not valid (e.g -1, 999999999999)
+2. **Value the user has entered is not valid (e.g -1, 999999999999)**:
     2.1 Inform the user that the value is not valid.
 ## SUB-VARIATIONS
 
