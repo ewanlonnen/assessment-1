@@ -1,0 +1,156 @@
+@startuml
+actor dev as "Developer"
+
+rectangle Database
+
+rectangle "Use case 1"{
+
+    usecase UC1 as "Facilitate the creation of a city report"
+
+    usecase UCa as "Generate city report"
+
+    usecase UCe1 as "Inform customer that criteria is invalid"
+
+    dev - UC1
+    UC1 ..> UCa : include
+    UCe1 ..> UC1 : extend
+    UC1 - Database
+
+}
+
+rectangle "Use case 2"{
+
+    usecase UC2 as "Display a non-set list of countries"
+
+    usecase UCb as "Display list"
+
+    usecase UCe2 as "Inform user that the area is invalid"
+
+    dev - UC2
+    UC2 ..> UCb : include
+    UCe2 ..> UC2 : extend
+    UC2 - Database
+
+}
+
+rectangle "Use case 3"{
+
+    usecase UC3 as "Display all countries in an area in descending order of population"
+
+    usecase UCc as "Sort countries into descending order of population"
+    usecase UCd as "Display ordered list"
+
+    usecase UCe3 as "Inform user that the area is invalid"
+
+    dev - UC3
+    UC3 ..> UCc : include
+    UC3 ..> UCd : include
+    UCd ..> UCc : include
+    UCe3 ..> UC3 : extend
+    UC3 - Database
+
+}
+
+rectangle "Use case 4"{
+
+    usecase UC4 as "Display the number and percentage of people that speak a set list of languages in descending order of population"
+
+    usecase UCe as "Percentages of language speakers calculated"
+    usecase UCf as "Percentages sorted into descending order"
+    usecase UCg as "Display sorted list"
+
+    dev - UC4
+    UC4 ..> UCe : include
+    UC4 ..> UCf : include
+    UC4 ..> UCg : include
+    UCg ..> UCf : include
+    UCf ..> UCe : include
+    UC4 - Database
+
+}
+
+rectangle "Use case 5"{
+
+    usecase UC5 as "Display the top n populated capital cities in a region/continent/world in descending order of population"
+
+    usecase UCh as "Sort cities into descending order of population"
+    usecase UCi as "Shorten list to n values"
+    usecase UCj as "Display list"
+
+    usecase UCe5 as "Inform user that the area is invalid"
+    usecase UCe6 as "Inform user that n is invalid"
+
+    dev - UC5
+    UC5 ..> UCh : include
+    UC5 ..> UCi : include
+    UC5 ..> UCj : include
+    UCj ..> UCi : include
+    UCi ..> UCh : include
+    UCe5 ..> UC5 : extend
+    UCe6 ..> UC5 : extend
+
+}
+
+rectangle "Use case 6"{
+
+    usecase UC6 as "Display the top populated capital cities in a region/continent/world in descending order of population"
+
+    usecase UCk as "Sort capital cities into descending order of population"
+    usecase UCl as "Display list"
+
+    usecase UCe7 as "Inform user that the area is invalid"
+
+    dev - UC6
+    UC6 ..> UCk : include
+    UC6 ..> UCl : include
+    UCl ..> UCk : include
+    UCe7 ..> UC6 : extend
+
+}
+
+rectangle "Use case 7"{
+
+    usecase UC7 as "Display the top n populated cities in a district/country/region/continent/world in descending order of population"
+
+    usecase UCm as "Sort cities into descending order of population"
+    usecase UCn as "Shorten list to n values"
+    usecase UCo as "Display list"
+
+    usecase UCe8 as "Inform user that the area is invalid"
+    usecase UCe9 as "Inform user that n is invalid"
+
+    dev - UC7
+    UC7 ..> UCm : include
+    UC7 ..> UCn : include
+    UC7 ..> UCo : include
+    UCo ..> UCn : include
+    UCn ..> UCm : include
+    UCe8 ..> UC7 : extend
+    UCe9 ..> UC7 : extend
+
+}
+
+rectangle "Use case 8"{
+
+    usecase UC8 as "Display the total population of a country/region/continent, the amount of people living in cities and the amount of people not living in cities in that country/region/continent"
+
+    usecase UCp as "Calculate the total population of the area"
+    usecase UCq as "Calculate the number of people in the area living in a city"
+    usecase UCr as "Calculate the number of people in the area not living in a city"
+    usecase UCs as "Display the population information in seperate tables"
+
+    usecase UCe10 as "Inform user the area is invalid"
+
+    dev - UC8
+    UC8 ..> UCp : include
+    UC8 ..> UCq : include
+    UC8 ..> UCr : include
+    UC8 ..> UCs : include
+    UCs ..> UCr : include
+    UCr ..> UCq : include
+    UCq ..> UCp : include
+    UCr ..> UCp : include
+    UCe10 ..> UC8 : extend
+
+}
+@enduml
