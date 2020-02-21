@@ -28,7 +28,7 @@ public class AppTest
     @Test
     void getCountry()
     {
-        String testCountry = "Country";
+        String testCountry = "Syria";
         app.getCountry(testCountry);
     }
 }
