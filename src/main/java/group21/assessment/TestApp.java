@@ -56,6 +56,10 @@ public class TestApp {
     }
 
     public Country getCountry(String cName) {
+        if (cName == null)
+        {
+            System.out.println("No employees");
+        }
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
