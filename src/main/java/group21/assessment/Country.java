@@ -14,4 +14,16 @@ public class Country {
 
     public String capital;
 
+    Country(String Code, String Name, String Continent,String Region,int Population,String Capital){
+        code = Code;
+        name = Name;
+        continent = Continent;
+        region = Region;
+        population = Population;
+        capital = Capital;
+
+
+    }
+
 }
+
