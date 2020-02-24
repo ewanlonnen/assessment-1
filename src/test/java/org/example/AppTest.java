@@ -1,6 +1,7 @@
 package org.example;
 
 import group21.assessment.TestApp;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,6 +18,7 @@ public class AppTest
     static void init()
     {
         app = new TestApp();
+        //app.connect();
     }
 
     @Test
@@ -29,6 +31,11 @@ public class AppTest
     void getCountry()
     {
         String testCountry = "Syria";
-        app.getCountry(testCountry);
+        app.displayCountry(app.getCountry(testCountry));
     }
+
+    //@AfterAll
+    //static void end(){
+    //    app.disconnect();
+    //}
 }
