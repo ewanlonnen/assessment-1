@@ -36,24 +36,20 @@ A request for city information is received
 
 ## MAIN SUCCESS SCENARIO
 
-*put here the steps of the scenario from trigger to goal delivery, and any cleanup after*
-
-1. action description
+1. Customer requests city information for a given criteria
+2. Relevant city information is extracted from the database
+3. Report is created using extracted information
+4. Report is supplied to customer
 
 ## EXTENSIONS
 
-*put here the extensions, one at a time, each referring to the step of the main scenario*
-
-1. **Condition**: action of sub use case
+2. **Criteria supplied by customer is invalid (eg. asks for more cities than exist in the database)**:
+    1. Inform customer that criteria is invalid
 
 ## SUB-VARIATIONS
 
-*put here the sub-variations that will cause eventual branching in the scenario
-
-1. list of sub-variations
+None
 
 ## SCHEDULE
 
-**DUE DATE**: *date or release of deployment*
-
-*any other schedule/staffing information you need*
+**DUE DATE**: 17th Feb
