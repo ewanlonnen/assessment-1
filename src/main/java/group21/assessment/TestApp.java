@@ -12,29 +12,39 @@ public class TestApp {
     /**
      * Connect to the MySQL database.
      */
-    public void connect() {
-        try {
+    public void connect(String location)
+    {
+        try
+        {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to a database...");
-            try {
+        for (int i = 0; i < retries; ++i)
+        {
+            System.out.println("Connecting to database...");
+            try
+            {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            } catch (SQLException sqle) {
+            }
+            catch (SQLException sqle)
+            {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
+            }
+            catch (InterruptedException ie)
+            {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -55,6 +65,7 @@ public class TestApp {
         }
     }
 
+    //get single countries
     public Country getCountry(String cName) {
         if (cName == null)
         {
@@ -75,6 +86,30 @@ public class TestApp {
                 return c;
             }
             return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+    //get all countries
+    public ArrayList<Country> getAllCountries() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while (rset.next()) {
+                Country c = new Country(rset.getString("country.Code"), rset.getString("country.Name"), rset.getString("country.Continent"),rset.getString("country.Region"),rset.getInt("country.Population"),rset.getString("city.Name"));
+                countryList.add(c);
+            }
+            return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get employee details");
@@ -160,7 +195,6 @@ public class TestApp {
             // Create string for SQL statement
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID WHERE country.Continent = " + "'" + s_continent + "'" + " order by country.Population DESC LIMIT " + numberOfContinents;
             // Execute SQL statement
-            System.out.println(strSelect);
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
             // Check one is returned
@@ -195,7 +229,7 @@ public class TestApp {
         Country c = new Country();
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33061");
         ArrayList<Country> worldPop = a.getCountryByPopulation();
         c.generateReport(worldPop);
 
@@ -205,8 +239,11 @@ public class TestApp {
         ArrayList<Country> regionPop = a.getCountryByRegion("Polynesia");
         c.generateReport(regionPop);
 
-        ArrayList<Country> NCountries = a.top_N_Continent("Polynesia",3);
+        ArrayList<Country> NCountries = a.top_N_Continent("Europe",3);
         c.generateReport(NCountries);
+
+        ArrayList<Country> allCountries = a.getAllCountries();
+        c.generateReport(allCountries);
 
         Country individualCountry = a.getCountry("Syria");
         //a.displayCountry(c);
