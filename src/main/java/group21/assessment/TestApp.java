@@ -12,10 +12,10 @@ public class TestApp {
     /**
      * Connect to the MySQL database.
      */
-    public void connect() {
+    public void connect(String location) {
         try {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
@@ -28,7 +28,7 @@ public class TestApp {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -167,7 +167,7 @@ public class TestApp {
 
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33060");
         ArrayList<Country> c = a.getCountryByPopulation();
         for (Country country : c) {
             String country_string =
