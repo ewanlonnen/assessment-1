@@ -223,13 +223,24 @@ public class TestApp {
         }
     }
 
+    //top N populated countries
+    public ArrayList<Country> topPopulatedCountries(int limit){
+        TestApp temp = new TestApp();
+        ArrayList<Country> countries = temp.getCountryByPopulation();
+        ArrayList<Country> topCountries = new ArrayList<Country>();
+        for (int i = 0; i < limit; i++){
+            topCountries.add(countries.get(i));
+        }
+        return topCountries;
+    }
+
     public static void main(String[] args) {
         // Create new Application
         TestApp a = new TestApp();
         Country c = new Country();
 
         // Connect to database
-        a.connect("localhost:33061");
+        a.connect("localhost:33060");
         ArrayList<Country> worldPop = a.getCountryByPopulation();
         c.generateReport(worldPop);
 
@@ -242,8 +253,8 @@ public class TestApp {
         ArrayList<Country> NCountries = a.top_N_Continent("Europe",3);
         c.generateReport(NCountries);
 
-        ArrayList<Country> allCountries = a.getAllCountries();
-        c.generateReport(allCountries);
+
+        c.generateReport(a.topPopulatedCountries(6));
 
         Country individualCountry = a.getCountry("Syria");
         //a.displayCountry(c);
