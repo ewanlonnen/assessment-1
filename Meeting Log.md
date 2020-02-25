@@ -19,5 +19,12 @@ WEEK 4:
 WEEK 5:
 •	Discussed user issues and reworked them slightly and added the rest to github
 •	Merged branches to master to get closer towards a product for Code Presentation 2
-•	Began progress towards user case in first meeting
+•	Began progress towards user case in first meeting and finished them throughout the week.
+WEEK 6:
+• Finished everything for code review 2 and successfully presented it receiving 75%. 
+• Successfully made improvements to all things pointed out in code review 1
+• Discussed what could be further done to improve code (internal commentary) and the project (Setting up sprints on ZUBE)
+WEEK 7:
+• Began work towards the user testing in the first meeting
+• Set up Sprint board on Zube 
 
