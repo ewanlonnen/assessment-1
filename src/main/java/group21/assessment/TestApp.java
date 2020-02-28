@@ -12,44 +12,33 @@ public class TestApp {
     /**
      * Connect to the MySQL database.
      */
-    public void connect(String location)
-    {
-        try
-        {
+    public void connect() {
+        try {
             // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
-            System.out.println("Connecting to database...");
-            try
-            {
+        for (int i = 0; i < retries; ++i) {
+            System.out.println("Connecting to a database...");
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            }
-            catch (SQLException sqle)
-            {
+            } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
     }
-
 
     /**
      * Disconnect from the MySQL database.
@@ -211,6 +200,30 @@ public class TestApp {
         }
     }
 
+    //top N populated regions
+    public ArrayList<Country> top_N_Region(String s_region, int numberOfContinents) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID WHERE country.Region = " + "'" + s_region + "'" + " order by country.Population DESC LIMIT " + numberOfContinents;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while (rset.next()) {
+                Country c = new Country(rset.getString("country.Code"), rset.getString("country.Name"), rset.getString("country.Continent"),rset.getString("country.Region"),rset.getInt("country.Population"),rset.getString("city.Name"));
+                countryList.add(c);
+            }
+            return countryList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
     public void displayCountry(Country c) {
         if (c != null) {
             System.out.println(
@@ -224,37 +237,192 @@ public class TestApp {
     }
 
     //top N populated countries
-    public ArrayList<Country> topPopulatedCountries(int limit){
-        TestApp temp = new TestApp();
-        ArrayList<Country> countries = temp.getCountryByPopulation();
-        ArrayList<Country> topCountries = new ArrayList<Country>();
-        for (int i = 0; i < limit; i++){
-            topCountries.add(countries.get(i));
+    public ArrayList<Country> top_N_Countries(int limit) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID order by country.Population DESC LIMIT " + limit;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while (rset.next()) {
+                Country c = new Country(rset.getString("country.Code"), rset.getString("country.Name"), rset.getString("country.Continent"),rset.getString("country.Region"),rset.getInt("country.Population"),rset.getString("city.Name"));
+                countryList.add(c);
+            }
+            return countryList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
         }
-        return topCountries;
     }
+
+    //top N populated countries
+    public ArrayList<City> citiesByPop() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code order by city.Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while (rset.next()) {
+                City c = new City(rset.getString("city.Name"), rset.getString("country.Name"), rset.getString("city.District"),rset.getInt("city.Population"));
+                cityList.add(c);
+            }
+            return cityList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+    //top N populated countries
+    public ArrayList<City> citiesByContinent(String s_continent) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Continent = " + "'" + s_continent + "'" + "order by city.Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while (rset.next()) {
+                City c = new City(rset.getString("city.Name"), rset.getString("country.Name"), rset.getString("city.District"),rset.getInt("city.Population"));
+                cityList.add(c);
+            }
+            return cityList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+    //populated districts
+    public ArrayList<City> citiesByDistrict(String s_district) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where city.District = " + "'" + s_district + "'" + "order by city.Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while (rset.next()) {
+                City c = new City(rset.getString("city.Name"), rset.getString("country.Name"), rset.getString("city.District"),rset.getInt("city.Population"));
+                cityList.add(c);
+            }
+            return cityList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+    //populated cities in region
+    public ArrayList<City> citiesByRegion(String s_region) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Region = " + "'" + s_region + "'" + "order by city.Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while (rset.next()) {
+                City c = new City(rset.getString("city.Name"), rset.getString("country.Name"), rset.getString("city.District"),rset.getInt("city.Population"));
+                cityList.add(c);
+            }
+            return cityList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+    //populated cities in country
+    public ArrayList<City> citiesByCountry(String s_country) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Name = " + "'" + s_country + "'" + "order by city.Population desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while (rset.next()) {
+                City c = new City(rset.getString("city.Name"), rset.getString("country.Name"), rset.getString("city.District"),rset.getInt("city.Population"));
+                cityList.add(c);
+            }
+            return cityList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
+    }
+
+    
 
     public static void main(String[] args) {
         // Create new Application
         TestApp a = new TestApp();
-        Country c = new Country();
+        Country country = new Country();
+        City city = new City();
 
         // Connect to database
-        a.connect("localhost:33060");
-        ArrayList<Country> worldPop = a.getCountryByPopulation();
-        c.generateReport(worldPop);
+        a.connect();
+        /*ArrayList<Country> worldPop = a.getCountryByPopulation();
+        country.generateReport(worldPop);
 
         ArrayList<Country> continentPop = a.getCountryByContinent("Europe");
-        c.generateReport(continentPop);
+        country.generateReport(continentPop);
 
         ArrayList<Country> regionPop = a.getCountryByRegion("Polynesia");
-        c.generateReport(regionPop);
+        country.generateReport(regionPop);
 
-        ArrayList<Country> NCountries = a.top_N_Continent("Europe",3);
-        c.generateReport(NCountries);
+        ArrayList<Country> NCountriesByContinent = a.top_N_Continent("Europe",3);
+        country.generateReport(NCountriesByContinent);
 
+        ArrayList<Country> NCountries = a.top_N_Countries(3);
+        country.generateReport(NCountries);
 
-        c.generateReport(a.topPopulatedCountries(6));
+        ArrayList<Country> NCountriesByRegion = a.top_N_Region("Western Europe",3);
+        country.generateReport(NCountriesByRegion);
+*/
+/*        ArrayList<City> cityList = a.citiesByPop();
+        city.generateReport(cityList);
+
+        ArrayList<City> cityListContinent = a.citiesByContinent("Europe");
+        city.generateReport(cityListContinent);
+
+        ArrayList<City> cityListDistrict = a.citiesByDistrict("England");
+        city.generateReport(cityListDistrict);
+
+        ArrayList<City> cityListRegion = a.citiesByRegion("Caribbean");
+        city.generateReport(cityListRegion);
+
+        ArrayList<City> cityListCountry = a.citiesByCountry("France");
+        city.generateReport(cityListCountry);*/
+
 
         Country individualCountry = a.getCountry("Syria");
         //a.displayCountry(c);
