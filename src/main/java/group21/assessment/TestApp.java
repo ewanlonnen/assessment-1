@@ -58,7 +58,7 @@ public class TestApp {
     public Country getCountry(String cName) {
         if (cName == null)
         {
-            System.out.println("No employees");
+            System.out.println("No countries");
         }
         try {
             // Create an SQL statement
@@ -77,7 +77,7 @@ public class TestApp {
             return null;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -101,7 +101,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -125,7 +125,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -149,7 +149,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -172,7 +172,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -195,7 +195,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -219,7 +219,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -255,7 +255,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -279,7 +279,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -303,7 +303,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -327,7 +327,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -351,7 +351,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -376,7 +376,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -400,7 +400,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -424,7 +424,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -448,7 +448,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -472,7 +472,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
