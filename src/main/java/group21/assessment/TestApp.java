@@ -12,29 +12,39 @@ public class TestApp {
     /**
      * Connect to the MySQL database.
      */
-    public void connect() {
-        try {
+    public void connect(String location)
+    {
+        try
+        {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to a database...");
-            try {
+        for (int i = 0; i < retries; ++i)
+        {
+            System.out.println("Connecting to database...");
+            try
+            {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            } catch (SQLException sqle) {
+            }
+            catch (SQLException sqle)
+            {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
+            }
+            catch (InterruptedException ie)
+            {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -58,7 +68,7 @@ public class TestApp {
     public Country getCountry(String cName) {
         if (cName == null)
         {
-            System.out.println("No employees");
+            System.out.println("No countries");
         }
         try {
             // Create an SQL statement
@@ -67,7 +77,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM country, city WHERE country.Capital = city.ID and country.Name = " + "'" + cName + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             //ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -77,7 +87,7 @@ public class TestApp {
             return null;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -91,7 +101,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -101,7 +111,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -115,7 +125,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID order by country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -125,7 +135,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -139,7 +149,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID WHERE country.Continent = " + "'" + s_continent + "'" + " order by country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -149,7 +159,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -162,7 +172,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID WHERE country.Region = " + "'" + s_region + "'" + " order by country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -172,7 +182,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -185,7 +195,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID WHERE country.Continent = " + "'" + s_continent + "'" + " order by country.Population DESC LIMIT " + numberOfContinents;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -195,7 +205,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -209,7 +219,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID WHERE country.Region = " + "'" + s_region + "'" + " order by country.Population DESC LIMIT " + numberOfContinents;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -219,7 +229,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -245,7 +255,7 @@ public class TestApp {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.name FROM world.country left join world.city on country.Capital = city.ID order by country.Population DESC LIMIT " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new country if valid.
             // Check one is returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while (rset.next()) {
@@ -255,7 +265,7 @@ public class TestApp {
             return countryList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get country details");
             return null;
         }
     }
@@ -269,7 +279,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code order by city.Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -279,7 +289,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -293,7 +303,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Continent = " + "'" + s_continent + "'" + "order by city.Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -303,7 +313,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -317,7 +327,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where city.District = " + "'" + s_district + "'" + "order by city.Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -327,7 +337,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -341,7 +351,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Region = " + "'" + s_region + "'" + "order by city.Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -351,7 +361,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -366,7 +376,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Name = " + "'" + s_country + "'" + "order by city.Population desc";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -376,7 +386,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -390,7 +400,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where city.District = " + "'" + s_district + "'" + "order by city.Population desc limit " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -400,7 +410,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -414,7 +424,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Name = " + "'" + s_country + "'" + "order by city.Population desc limit " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -424,7 +434,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -438,7 +448,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Region = " + "'" + s_region + "'" + "order by city.Population desc limit " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -448,7 +458,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -462,7 +472,7 @@ public class TestApp {
             String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where country.Continent = " + "'" + s_continent + "'" + "order by city.Population desc limit " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             ArrayList<City> cityList = new ArrayList<City>();
             while (rset.next()) {
@@ -472,7 +482,7 @@ public class TestApp {
             return cityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -483,7 +493,7 @@ public class TestApp {
         City city = new City();
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33060");
         /*ArrayList<Country> worldPop = a.getCountryByPopulation();
         country.generateReport(worldPop);
 
