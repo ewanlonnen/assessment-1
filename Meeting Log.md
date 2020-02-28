@@ -27,4 +27,5 @@ WEEK 6:
 WEEK 7:
 • Began work towards the user testing in the first meeting
 • Set up Sprint board on Zube 
-
+• Continued work towards user testing 
+• Began adding code comments to increase its quality as it was pointed out to be missing in Code Review 2
