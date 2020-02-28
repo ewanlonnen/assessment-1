@@ -18,7 +18,7 @@ public class AppTest
     static void init()
     {
         app = new TestApp();
-        //app.connect();
+        //app.connect("localhost:33060");
     }
 
     @Test
@@ -34,8 +34,8 @@ public class AppTest
         app.displayCountry(app.getCountry(testCountry));
     }
 
-    //@AfterAll
-    //static void end(){
-    //    app.disconnect();
-    //}
+    @AfterAll
+    static void end(){
+        app.disconnect();
+    }
 }
