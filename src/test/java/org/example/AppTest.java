@@ -17,20 +17,20 @@ public class AppTest
     @BeforeAll
     static void init()
     {
-        app = new TestApp();
+        app = new TestApp(); //creating a test to ensure that the app can create an instance
         //app.connect();
     }
 
     @Test
     void getCountryTestNull()
     {
-        app.getCountry(null);
+        app.getCountry(null); //creating a test to ensure that the program will report that there is no country
     }
 
     @Test
     void getCountry()
     {
-        String testCountry = "Syria";
+        String testCountry = "Syria"; //creating a test to ensure that the program will report the correct country
         app.displayCountry(app.getCountry(testCountry));
     }
 
