@@ -18,7 +18,7 @@ public class AppTest
     static void init()
     {
         app = new TestApp();
-        //app.connect("localhost:33060");
+        //app.connect();
     }
 
     @Test
