@@ -397,7 +397,7 @@ public class TestApp {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where city.District = " + "'" + s_district + "'" + "order by city.Population desc limit " + limit;
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population from world.city left join world.country on city.CountryCode = country.Code where city.District = " + "'" + s_district + "'" + " order by city.Population desc limit " + limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new city if valid.
