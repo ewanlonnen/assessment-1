@@ -224,7 +224,7 @@ public class CountryChecker {
         }
     }
 
-    public void displayCountry(Country c) {
+    public void displayCountry(Country c) { //code to gather all variables together and display final result
         if (c != null) {
             System.out.println(
                    c.code + " "
@@ -516,6 +516,10 @@ public class CountryChecker {
 
         ArrayList<City> cityListCountry = a.citiesByCountry("France");
         city.generateReport(cityListCountry);*/
+
+
+    //creating arrraylists
+
 
         ArrayList<City> topCityListDistrict = a.top_N_citiesByDistrict("England", 5);
         city.generateReport(topCityListDistrict);
