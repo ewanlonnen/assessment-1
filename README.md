@@ -2,7 +2,7 @@
 Group 21 project
 Commits will be here
 
-Master Build Status [![Build Status](https://travis-ci.com/CameronStott/sem1.svg?branch=master)](https://travis-ci.com/ewanlonnen/assessment-1.svg)
+Master Build Status [![Build Status](https://travis-ci.com/ewanlonnen/assessment-1.svg?branch=master)](https://travis-ci.com/ewanlonnen/assessment-1.svg)
 
 Develop Build Status [![Build Status](https://travis-ci.com/CameronStott/sem1.svg?branch=Develop)](https://travis-ci.com/ewanlonnen/assessment-1)
 
