@@ -1,5 +1,6 @@
 package org.example;
 
+import group21.assessment.Population;
 import group21.assessment.TestApp;
 import group21.assessment.City;
 import org.junit.jupiter.api.AfterAll;
@@ -15,6 +16,7 @@ public class AppTest
 {
     static TestApp app;
     City c = new City();
+    Population p = new Population();
 
     @BeforeAll
     static void init()
@@ -41,6 +43,13 @@ public class AppTest
     {
         ArrayList<City> list = app.top_N_citiesByDistrict("England", 5);
         c.generateReport(list);
+    }
+
+    @Test
+    void populationReportOfCountries()
+    {
+        ArrayList<Population> worldPop = app.populaionReportOfCountries();
+        p.generateReport(worldPop);
     }
 
     @AfterAll
