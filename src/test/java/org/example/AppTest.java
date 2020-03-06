@@ -1,23 +1,17 @@
 package org.example;
 
-import group21.assessment.TestApp;
-import org.junit.jupiter.api.AfterAll;
+import group21.assessment.CountryChecker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest
 {
-    static TestApp app;
+    static CountryChecker app;
 
     @BeforeAll
     static void init()
     {
-        app = new TestApp(); //creating a test to ensure that the app can create an instance
+        app = new CountryChecker(); //creating a test to ensure that the app can create an instance
         //app.connect();
     }
 

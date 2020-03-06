@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>group21.assessment.TestApp</mainClass>
+                            <mainClass>group21.assessment.CountryChecker</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

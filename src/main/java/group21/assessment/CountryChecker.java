@@ -3,7 +3,7 @@ package group21.assessment;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class TestApp {
+public class CountryChecker {
     /**
      * Connection to MySQL database.
      */
@@ -478,7 +478,7 @@ public class TestApp {
     }
     public static void main(String[] args) {
         // Create new Application
-        TestApp a = new TestApp();
+        CountryChecker a = new CountryChecker();
         Country country = new Country();
         City city = new City();
 
