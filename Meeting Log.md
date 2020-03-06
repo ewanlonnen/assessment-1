@@ -30,3 +30,8 @@ WEEK 7:
 • Continued work towards user testing 
 • Began integration testing and encountered some issues involving SQL
 • Began adding code comments to increase its quality as it was pointed out to be missing in Code Review 2
+WEEK 8:
+• Continued to develop our user testing
+• Due to external circumstances only managed to meet once this week.
+• Finished adding code comments
+
