@@ -747,7 +747,7 @@ public class TestApp {
 
         // Connect to database
         a.connect("localhost:33060");
-        /*ArrayList<Country> worldPop = a.getCountryByPopulation();
+        ArrayList<Country> worldPop = a.getCountryByPopulation();
         country.generateReport(worldPop);
 
         ArrayList<Country> continentPop = a.getCountryByContinent("Europe");
@@ -764,8 +764,8 @@ public class TestApp {
 
         ArrayList<Country> NCountriesByRegion = a.top_N_Region("Western Europe",3);
         country.generateReport(NCountriesByRegion);
-*/
-        /*
+
+
         ArrayList<City> cityList = a.citiesByPop();
         city.generateReport(cityList);
 
@@ -779,9 +779,9 @@ public class TestApp {
         city.generateReport(cityListRegion);
 
         ArrayList<City> cityListCountry = a.citiesByCountry("France");
-        city.generateReport(cityListCountry);*/
+        city.generateReport(cityListCountry);
 
-        /*
+
         ArrayList<City> topCityListDistrict = a.top_N_citiesByDistrict("England", 5);
         city.generateReport(topCityListDistrict);
 
@@ -795,19 +795,19 @@ public class TestApp {
         city.generateReport(topCityListContinent);
 
         ArrayList<City> topCityList = a.top_N_citiesByPop(6);
-        city.generateReport(topCityList);*/
+        city.generateReport(topCityList);
 
-        /*ArrayList<Capital> capitalList = a.capitalsByPop();
+        ArrayList<Capital> capitalList = a.capitalsByPop();
         capital.generateReport(capitalList);
 
         ArrayList<Capital> capitalListByRegion = a.capitalsByRegion("Polynesia");
         capital.generateReport(capitalListByRegion);
 
         ArrayList<Capital> capitalListByContinent = a.capitalsByContinent("South America");
-        capital.generateReport(capitalListByContinent);*/
+        capital.generateReport(capitalListByContinent);
 
 
-        /*
+
         ArrayList<Capital> topNcapitalList = a.top_N_capitalsByPop(5);
         capital.generateReport(topNcapitalList);
 
@@ -815,10 +815,10 @@ public class TestApp {
         capital.generateReport(topNcapitalListByContinent);
 
         ArrayList<Capital> topNcapitalListByRegion = a.top_N_capitalsByRegion("Western Europe", 5);
-        capital.generateReport(topNcapitalListByRegion);*/
+        capital.generateReport(topNcapitalListByRegion);
 
-        ArrayList<Population> worldPop = a.populaionReportOfCountries();
-        population.generateReport(worldPop);
+        ArrayList<Population> worldPopCountry = a.populaionReportOfCountries();
+        population.generateReport(worldPopCountry);
 
         ArrayList<Population> worldPopRegion = a.populaionReportOfCountriesByRegion("Western Europe");
         population.generateReport(worldPopRegion);
