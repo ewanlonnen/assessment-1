@@ -4,19 +4,67 @@ import java.util.ArrayList;
 
 public class Country {
 
-    public String code;
+    private String code;
 
-    public String name;
+    private String name;
 
-    public String continent;
+    private String continent;
 
-    public String region;
+    private String region;
 
-    public int population;
+    private int population;
 
-    public String capital;
+    private String capital;
 
-    Country(String Code, String Name, String Continent,String Region,int Population,String Capital){
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public Country(String Code, String Name, String Continent, String Region, int Population, String Capital){
         code = Code;
         name = Name;
         continent = Continent;
@@ -24,7 +72,7 @@ public class Country {
         population = Population;
         capital = Capital;
     }
-    Country(){
+    public Country(){
 
     }
 

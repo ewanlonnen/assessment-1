@@ -25,7 +25,7 @@ public class TestApp {
             System.exit(-1);
         }
 
-        int retries = 10;
+        int retries = 2;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -236,12 +236,12 @@ public class TestApp {
     public void displayCountry(Country c) {
         if (c != null) {
             System.out.println(
-                   c.code + " "
-                            + c.name + " "
-                            + c.continent + " "
-                            + c.region + " "
-                            + c.population + " "
-                            + c.capital +"\n");
+                   c.getCode() + " "
+                            + c.getName() + " "
+                            + c.getContinent() + " "
+                            + c.getRegion() + " "
+                            + c.getPopulation() + " "
+                            + c.getCapital() +"\n");
         }
     }
 
