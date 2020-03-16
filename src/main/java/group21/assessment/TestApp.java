@@ -817,8 +817,8 @@ public class TestApp {
         ArrayList<Capital> topNcapitalListByRegion = a.top_N_capitalsByRegion("Western Europe", 5);
         capital.generateReport(topNcapitalListByRegion);*/
 
-        //ArrayList<Population> worldPop = a.populaionReportOfCountries();
-        //population.generateReport(worldPop);
+        ArrayList<Population> worldPop = a.populaionReportOfCountries();
+        population.generateReport(worldPop);
 
         ArrayList<Population> worldPopRegion = a.populaionReportOfCountriesByRegion("Western Europe");
         population.generateReport(worldPopRegion);

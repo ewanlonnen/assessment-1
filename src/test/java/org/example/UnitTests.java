@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppTest
+public class UnitTests
 {
     static TestApp app;
     City c = new City();
