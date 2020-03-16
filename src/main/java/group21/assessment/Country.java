@@ -79,7 +79,7 @@ public class Country {
     public void generateReport(ArrayList<Country> regionPop){
         for (Country country : regionPop) {
             String country_string =
-                    String.format("%-5s %-30s %-20s %-20s %-15s %-15s", country.code, country.name, country.continent, country.region, country.population, country.capital);
+                    String.format("%-5s %-30s %-20s %-20s %-15s %-15s", country.getCode(), country.getName(), country.getContinent(), country.getRegion(), country.getPopulation(), country.getCapital());
             System.out.println(country_string);
         }
     }

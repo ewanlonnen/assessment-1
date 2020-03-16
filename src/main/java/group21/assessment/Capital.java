@@ -20,10 +20,34 @@ public class Capital {
     public Capital() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
     public void generateReport(ArrayList<Capital> capitalList){
         for (Capital capital : capitalList) {
             String capital_string =
-                    String.format("%-30s %-30s %-20s", capital.name, capital.country, capital.population);
+                    String.format("%-30s %-30s %-20s", capital.getName(), capital.getCountry(), capital.getPopulation());
             System.out.println(capital_string);
         }
     }
